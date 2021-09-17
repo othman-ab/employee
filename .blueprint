@@ -1,0 +1,67 @@
+created:
+    - app/Http/Controllers/usersController.php
+    - app/Http/Controllers/CountryController.php
+    - app/Http/Controllers/CityController.php
+    - app/Http/Controllers/StateController.php
+    - app/Http/Controllers/DepartmentController.php
+    - database/factories/UserFactory.php
+    - database/factories/CountryFactory.php
+    - database/factories/StateFactory.php
+    - database/factories/CityFactory.php
+    - database/factories/DepartmentFactory.php
+    - database/migrations/2021_09_17_164514_create_users_table.php
+    - database/migrations/2021_09_17_164515_create_countries_table.php
+    - database/migrations/2021_09_17_164516_create_states_table.php
+    - database/migrations/2021_09_17_164517_create_cities_table.php
+    - database/migrations/2021_09_17_164518_create_departments_table.php
+    - app/Models/User.php
+    - app/Models/Country.php
+    - app/Models/State.php
+    - app/Models/City.php
+    - app/Models/Department.php
+    - tests/Feature/Http/Controllers/usersControllerTest.php
+    - tests/Feature/Http/Controllers/CountryControllerTest.php
+    - tests/Feature/Http/Controllers/CityControllerTest.php
+    - tests/Feature/Http/Controllers/StateControllerTest.php
+    - tests/Feature/Http/Controllers/DepartmentControllerTest.php
+    - app/Http/Requests/userStoreRequest.php
+    - app/Http/Requests/userUpdateRequest.php
+    - app/Http/Requests/CountryStoreRequest.php
+    - app/Http/Requests/CountryUpdateRequest.php
+    - app/Http/Requests/CityStoreRequest.php
+    - app/Http/Requests/CityUpdateRequest.php
+    - app/Http/Requests/StateStoreRequest.php
+    - app/Http/Requests/StateUpdateRequest.php
+    - app/Http/Requests/DepartmentStoreRequest.php
+    - app/Http/Requests/DepartmentUpdateRequest.php
+    - resources/views/user/index.blade.php
+    - resources/views/user/create.blade.php
+    - resources/views/user/show.blade.php
+    - resources/views/user/edit.blade.php
+    - resources/views/country/index.blade.php
+    - resources/views/country/create.blade.php
+    - resources/views/country/show.blade.php
+    - resources/views/country/edit.blade.php
+    - resources/views/city/index.blade.php
+    - resources/views/city/create.blade.php
+    - resources/views/city/show.blade.php
+    - resources/views/city/edit.blade.php
+    - resources/views/state/index.blade.php
+    - resources/views/state/create.blade.php
+    - resources/views/state/show.blade.php
+    - resources/views/state/edit.blade.php
+    - resources/views/department/index.blade.php
+    - resources/views/department/create.blade.php
+    - resources/views/department/show.blade.php
+    - resources/views/department/edit.blade.php
+updated:
+    - routes/web.php
+models:
+    Membership: { team_id: 'biginteger unsigned', user_id: 'biginteger unsigned', role: 'string nullable' }
+    Team: { user_id: 'biginteger unsigned', name: string, personal_team: boolean }
+    TeamInvitation: { team_id: 'biginteger unsigned', email: string, role: 'string nullable' }
+    User: { id: id, name: 'string:60', adress: 'string:120', zip_code: 'string:10', userable_id: int, userable_type: 'string:120', date_hired: timestamp, created_at: timestamp, updated_at: timestamp, softdeletes: softDeletes }
+    Country: { id: id, country_code: 'string:5', name: 'string:60', created_at: timestamp, updated_at: timestamp, softdeletes: softDeletes, relationships: { hasMany: State } }
+    State: { id: id, country_id: 'id foreign', name: 'string:60', created_at: timestamp, updated_at: timestamp, softdeletes: softDeletes, relationships: { hasMany: City } }
+    City: { id: id, state_id: 'id foreign', name: 'string:60', created_at: timestamp, updated_at: timestamp, softdeletes: softDeletes }
+    Department: { id: id, state_id: 'id foreign', name: 'string:60', created_at: timestamp, updated_at: timestamp, softdeletes: softDeletes }

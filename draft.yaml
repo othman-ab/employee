@@ -1,0 +1,80 @@
+models:
+  User:
+    id
+    name: string:60
+    adress: string:120
+    zip_code: string:10
+    userable_id: int
+    userable_type: string:120
+    date_hired: timestamp
+    created_at: timestamp
+    updated_at: timestamp
+    softDeletes
+  Country:
+    id
+    country_code: string:5
+    name: string:60
+    created_at: timestamp
+    updated_at: timestamp
+    softDeletes
+    relationships:
+      hasMany: State
+  State:
+    id
+    country_id : id foreign
+    name: string:60
+    created_at: timestamp
+    updated_at: timestamp
+    softDeletes
+    relationships:
+      hasMany: City
+  City:
+    id
+    state_id: id foreign
+    name: string:60
+    created_at: timestamp
+    updated_at: timestamp
+    softDeletes
+  Department:
+    id
+    state_id: id foreign
+    name: string:60
+    created_at: timestamp
+    updated_at: timestamp
+    softDeletes
+controllers:
+  users:
+    index:
+      query: all:users
+      render: user.index with:users
+    create:
+      render: user.create
+    store:
+      validate: user
+      save: user
+      flash: user.id
+      redirect: user.index
+    show:
+      render: user.show with:user
+    edit:
+      render: user.edit with:user
+    update:
+      validate: user
+      update: user
+      flash: user.id
+      redirect: user.index
+    destroy:
+      delete: user
+      redirect: user.index
+
+  Country:
+    resource
+
+  City:
+    resource
+
+  State:
+    resource
+
+  Department:
+    resource
